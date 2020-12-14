@@ -1,0 +1,46 @@
+﻿Week 10 Discussion SQL LAB : ETL
+
+
+Create View: 
+CREATE VIEW WEEK10_OLAP_VIEW AS 
+SELECT 
+re_State.StateId, re_City.CityId, re_Zip.ZipId, re_Type.TypeId, re_House.HouseId,  re_Transactions.TransactionsId, re_Transactions.SaleDate, re_Transactions.Price
+FROM
+re_State, re_City, re_Zip, re_Type, re_House, re_Transactions
+WHERE
+re_Transactions.HouseId = re_House.HouseId AND re_House.ZipId = re_Zip.ZipId AND
+re_Zip.CityId = re_City.CityId AND re_City.StateId = re_State.StateId;
+
+
+Create Fact_Daily: 
+CREATE TABLE Fact_Daily AS
+SELECT *
+FROM WEEK10_OLAP_VIEW 
+
+
+Create Fact_Month_Year:
+CREATE TABLE Fact_MonthYear AS
+SELECT `StateId`,
+`CityId`,
+         `ZipId`,
+         `TypeId`,
+         `HouseId`,
+`Units`,
+CONCAT(MONTH(`SaleDate`), '  ', YEAR(`SaleDate`)) AS 'Month_Year',
+ SUM(`Price`) AS PriceYearlyMonthly
+FROM `Fact_Daily`
+GROUP BY 1, 2, 3, 4, 5, 6,7
+
+
+Create Fact_Yearly:
+CREATE TABLE Fact_Yearly AS
+SELECT `StateId`,
+`CityId`,
+         `ZipId`,
+         `TypeId`,
+         `HouseId`,
+        `Units`,
+         Year(`SaleDate`),
+         SUM(`Price`) AS PriceYearly
+FROM `Fact_Daily`
+GROUP BY 1, 2, 3, 4, 5, 6,7
