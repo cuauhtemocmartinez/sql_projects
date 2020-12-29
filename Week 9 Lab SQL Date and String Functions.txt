@@ -1,0 +1,26 @@
+﻿1. Display counts of payments that are late.
+SELECT
+COUNT(*)
+FROM yhelen.payments
+WHERE datediff(paymentRecievedDate,PaymentScheduledDate) > 0;
+
+
+2. How many payments are late for more than 30 but less than 60 days?
+SELECT COUNT(*)
+FROM yhelen.payments
+WHERE DATEDIFF(paymentRecievedDate, PaymentScheduledDate) 
+BETWEEN 30 and 60;
+
+
+3. Using CONCAT() and ​you​r Customer and SalesOrder tables create a view
+lab_week9_extra with a single column "letter" that has records like below"
+
+
+CREATE VIEW lab_week9_extra AS
+SELECT CONCAT('Dear ', so_Customer.CustFirstName, ' ',
+so_Customer.CustLastName, ', thank you for your order on ', ' ', so_Order.Order_Date,
+'.')
+AS 'Letter'
+FROM so_Customer
+JOIN so_Order
+ON so_Customer.Customer_Id = so_Order.Customer_Id;
