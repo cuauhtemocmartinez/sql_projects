@@ -1,0 +1,49 @@
+1)
+INSERT INTO Department (DepID, DepName) 
+VALUES (5,'Accounting');
+
+2)
+INSERT INTO `Employee`(`EmpId`,`EmpName`, `StartYear`, `EndYear`, `StartSalary`, `CurrentSalary`, `EndSalary`, `DepId`) 
+VALUES (11,'Brian Latona','2014',NULL,120000,120000,NULL,4);
+
+3)
+INSERT INTO `Employee`(`EmpId`, `EmpName`, `StartYear`, `EndYear`, `StartSalary`, `CurrentSalary`, `EndSalary`, `DepId`) 
+VALUES (12, 'Meredith Whitney',2011,NULL,350000,350000,NULL,5);
+
+INSERT INTO `Employee`(`EmpId`, `EmpName`, `StartYear`, `EndYear`, `StartSalary`, `CurrentSalary`, `EndSalary`, `DepId`) 
+VALUES (13, 'Mario Gabell',2011,NULL,420000,420000,NULL,5);
+
+4)
+UPDATE `Employee` 
+SET EndYear=2013,EndSalary=CurrentSalary+3000 
+WHERE EmpID=3
+
+5)
+SELECT SUM(Employee.CurrentSalary) 
+FROM Employee 
+INNER JOIN Department 
+ON Department.DepId=Employee.DepId
+WHERE Department.DepName='HR' 
+AND Employee.EndSalary IS NULL;
+
+6)
+UPDATE Employee
+INNER JOIN Department 
+ON Employee.DepId = Department.DepID
+SET Employee.CurrentSalary = Employee.CurrentSalary * 1.06
+WHERE Department.DepName = 'HR'
+AND Employee.EndSalary IS NULL;
+
+7)
+CREATE VIEW Lab_Week_5 AS
+SELECT Department.DepID,
+        Department.DepName,
+        Employee.EmpID,
+        Employee.EmpName,
+        Employee.StartSalary,
+        Employee.CurrentSalary,
+        Employee.CurrentSalary - Employee.StartSalary AS Promoted,
+        Employee.EndSalary
+FROM Employee
+INNER JOIN Department 
+ON Department.DepId = Employee.DepId ;
