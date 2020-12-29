@@ -1,49 +1,31 @@
 SELECT count(1) from Employee
-
 count(1)
-
 10
 
-
 SELECT max(`StartSalary`) FROM `Employee` WHERE StartYear= 2010
-
 max(`StartSalary`)
-
 90000
 
-
 SELECT `EmpName` FROM `Employee` WHERE `EmpName` like 'B%'
-
 EmpName
-
 Bill Gates
 
-
 SELECT `EmpName` FROM `Employee` WHERE DepId=2
-
 EmpName
-
 Haily Anderson
-
 Nicolaus  Michelson
-
 Rebecca  Michelson
 
-SELECT `EmpName` FROM `Employee` WHERE `StartYear`> 2010 order by `StartSalary` DESC limit 1
-
+SELECT `EmpName` 
+FROM `Employee` 
+WHERE `StartYear`> 2010 order by `StartSalary` 
+DESC limit 1
 EmpName
-
 Edward Cullen
 
-
-SELECT sum(`StartSalary`),`DepId` FROM `Employee` group by `DepId`
-
+SELECT sum(`StartSalary`),`DepId` 
+FROM `Employee` group by `DepId`
 sum(`StartSalary`)  DepId
-
-420000                      1
-
+420000 1
 270000 2
-
 2684000 3
- 
-
