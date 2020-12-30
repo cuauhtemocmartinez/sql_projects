@@ -1,0 +1,56 @@
+1. re_State
+INSERT INTO re_State (StateName)
+SELECT DISTINCT state
+FROM yhelen.realestate0730
+
+2. re_City
+INSERT INTO re_City (CityName, StateId)
+SELECT DISTINCT city, StateId
+FROM re_State s, yhelen.realestate0730 r
+WHERE r.state = s.StateName
+
+3. re_Zip
+INSERT INTO re_Zip (ZipId, CityId)
+SELECT DISTINCT zip, CityId
+FROM re_City s, yhelen.realestate0730 r
+WHERE r.city = s.CityName
+
+4. re_House
+INSERT INTO re_Type (TypeName)
+SELECT DISTINCT type from yhelen.realestate0730
+INSERT re_House (Bath, Beds, SqFt, StreetAddress, TypeId, ZipId)
+SELECT DISTINCT r.baths, r.beds, r.sq__ft, r.street, t.TypeId, z.ZipId
+FROM re_Type t, re_Zip z, yhelen.realestate0730 r
+WHERE r.zip = z.ZipCode AND r.type = t.TypeName
+
+5. re_Sales
+INSERT into re_Transactions ( SaleDate, Price, HouseId)
+SELECT distinct r.sale_date, r.price, h.HouseId
+FROM re_House h, yhelen.realestate0730 r
+WHERE r.street = h.StreetAddress
+
+6. Create view WEEK9_LAB_REALESTATE joining all the tables to receive data similar to date in original yhelen.realestate0730
+CREATE VIEW WEEK9_LAB_REALESTATE AS
+SELECT
+    h.HouseId,
+    h.StreetAddress,
+    c.CityName,
+    st.StateName,
+    z.ZipCode,
+    h.Beds,
+    h.Bath,
+    h.SqFt,
+    t.TypeName,
+    s.TransactionsId,
+    s.SaleDate,
+    s.Price
+FROM re_House h
+JOIN re_Transactions s ON h.HouseId = s.HouseId
+JOIN re_Type t
+ON h.TypeId = t.TypeId
+JOIN re_Zip z
+ON h.ZipId = z.ZipId
+JOIN re_City c
+ON z.CityId = c.CityId
+JOIN re_State st
+ON c.StateId = st.StateId;
