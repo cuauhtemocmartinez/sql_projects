@@ -1,0 +1,58 @@
+so_Market
+CREATE TABLE so_Market(
+Market_Id INT PRIMARY KEY,
+Market VARCHAR(100)
+);
+
+so_Region
+CREATE TABLE so_Region(
+Region_Id INT PRIMARY KEY,
+);
+
+so_Product_Family
+CREATE TABLE so_Product_Family (
+Product_Family_ID INT PRIMARY KEY,
+);
+
+so_Customer
+CREATE TABLE so_Customer(
+Customer_Id INT PRIMARY KEY,
+Market_Id INT,
+FOREIGN KEY (Market_ID) REFERENCES so_market(Market_ID),
+Region_Id INT,
+FOREIGN KEY (Region_Id) REFERENCES so_Region(Region_Id)
+);
+
+so_manager
+CREATE TABLE so_Manager (
+Manager_Id INT PRIMARY KEY,
+);
+
+so_Agent
+CREATE TABLE so_Agent (
+Agent_Id INT PRIMARY KEY,
+Manager_Id INT,
+FOREIGN KEY (Manager_Id) REFERENCES so_Manager(Manager_Id)
+);
+
+so_Product
+CREATE TABLE so_Product (
+Product_Id INT PRIMARY KEY,
+Description VARCHAR(100),
+UnitPrice DECIMAL(10,2),
+ProductFamily_Id INT,
+FOREIGN KEY (ProductFamily_Id) REFERENCES so_Product_Family(ProductFamily_Id)
+);
+
+so_Order
+CREATE TABLE so_Order (
+Order_Id INT PRIMARY KEY,
+Agent_Id INT,
+FOREIGN KEY (Agent_Id) REFERENCES so_Agent(Agent_Id),
+Customer_Id INT,
+FOREIGN KEY (Customer_Id) REFERENCES so_Customer(Customer_Id),
+Product_Id INT,
+FOREIGN KEY (Product_Id) REFERENCES so_Product(Product_Id),
+Product_quantity DECIMAL(4,3),
+Order_Date DATE
+);
