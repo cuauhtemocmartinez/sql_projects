@@ -1,0 +1,20 @@
+﻿1. Display current date as "MON-DAY-YYYY"
+SELECT DATE_FORMAT(CURRENT_DATE, '%M %d %Y')
+
+
+2. Display string 'Wed 21 May 2008' as MySQL default date format '2008-5-21'
+SELECT str_to_date('Wed 21 May 2008','%W %d %M %Y')
+
+
+3. Display date in 17 days from now.
+SELECT DATE_ADD(now(),INTERVAL 17 DAY);
+
+
+4. Display date 17 days ago from now.
+SELECT DATE_SUB(now(),INTERVAL 17 DAY);
+
+
+5. How to display days difference between Payment.ScheduledDate and
+Payment.RecievedDate in yhelen.payments table. Submit SQL only in PDF.
+SELECT DATEDIFF(paymentRecievedDate, PaymentScheduledDate) 
+FROM yhelen.payments
