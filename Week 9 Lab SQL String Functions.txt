@@ -1,0 +1,40 @@
+﻿1. Write SQL to display Product and ProductFamily from your SalesOrder tables
+as a single item.
+
+
+SELECT concat(so_Product.Description, ' ', so_Product_Family.Product_Family_Name)
+AS combination
+FROM        so_Product,
+so_Product_Family
+WHERE
+so_Product.ProductFamily_Id = so_Product_Family.Product_Family_Id
+
+
+2. Write SQL to display ProductDescription ( ProductName) in your Product
+table in UPPER CASE
+
+
+SELECT UPPER (ProductName) 
+FROM so_Product;
+
+
+3. Write SQL to extract "vino" from string "in vino veritas".
+
+
+SELECT SUBSTR('in Vino veritas', 3, 5) AS vino;
+
+
+4. Write SQL to replace "W" in "Hello World!" with "Z"
+
+
+SELECT REPLACE ('Hello World!', "W", "Z")
+
+
+Part II.
+1. yhelen.test_customers_lab table has 2 columns with customer names.
+Please display Records counts where the columns have different values or the
+same values;
+
+
+SELECT strcmp(customerName, customerName_new) AS output 
+FROM test_customers_lab
