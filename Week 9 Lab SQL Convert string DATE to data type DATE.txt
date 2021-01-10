@@ -1,0 +1,25 @@
+DATE
+Step 1:
+SELECT str_to_date(concat (substr(`SaleDate`,2,10), ' ', substr(`SaleDate`,-5,4)), '%W %M %d %Y') 
+FROM `re_Transactions` 
+LIMIT 3
+
+UPDATE `re_Transactions`
+SET SaleDate = str_to_date(concat (substr(`SaleDate`, 2, 10), ' ', substr(`SaleDate`,-5,4)), '%W %M %d %Y')
+
+Step 2:
+ALTER TABLE re_Transactions
+MODIFY COLUMN `SaleDate` DATE;
+
+PRICE
+Step 1:
+SELECT REPLACE (`Price` , '"', '') 
+FROM `re_Transactions` 
+WHERE 1
+
+UPDATE `re_Transactions`
+SET Price = REPLACE (`Price` , '"', '')
+
+Step 2:
+ALTER TABLE re_Transactions
+MODIFY COLUMN `Price` INT;
