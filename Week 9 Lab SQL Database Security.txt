@@ -1,0 +1,14 @@
+Insert 3 records into yhelen.customers. Copy, and paste the resulting message.
+
+INSERT INTO yhelen.customers 
+VALUES (185, 'Wally West', 'Tama', 'Ernie', '5105554444',
+'123 Main Drive', NULL, 'Daily City', 'CA', 94075);
+
+INSERT INTO yhelen.customers VALUES (186, 'Clark Kent', 'Mayo', 'Tary', '6505554444',
+'123 Left Street', NULL, 'Yuba City', 'CA', 94819);
+
+INSERT INTO yhelen.customers VALUES (187, 'Wally West', 'Tam', 'Julie', '4155554444',
+'123 Right Ave', NULL, 'Big City', 'CA', 94111);
+
+Error => #1142 - INSERT command denied to user 'cmartinez'@'localhost' for table
+'customers'
