@@ -1,0 +1,72 @@
+﻿1. Display Count of Sold Houses by Year, City and Zip
+
+
+SELECT year(`SaleDate`),
+`CityName`,
+`ZipCode`, 
+count(*) as Count 
+FROM `WEEK9_LAB_REALESTATE` 
+GROUP BY 1,2,3
+
+
+CREATE VIEW Query_lab11_q1 AS
+SELECT year(`SaleDate`),
+`CityName`,
+`ZipCode`, 
+count(*) as Count 
+FROM `WEEK9_LAB_REALESTATE` 
+GROUP BY 1,2,3
+
+
+2. Display Count of Sold Houses by Year, City, and HouseType
+SELECT year(`SaleDate`),
+`CityName`,
+`TypeName`, 
+count(*) as Count 
+FROM `WEEK9_LAB_REALESTATE` 
+GROUP BY 1,2,3
+
+
+CREATE VIEW Query_lab11_q2 AS
+SELECT year(`SaleDate`),
+`CityName`,
+`TypeName`, 
+count(*) as Count 
+FROM `WEEK9_LAB_REALESTATE` 
+GROUP BY 1,2,3
+
+
+3. Display how many times each house was sold
+SELECT StreetAddress, count(*) as Count 
+FROM `WEEK9_LAB_REALESTATE`
+GROUP BY 1
+
+
+CREATE VIEW Query_lab11_ q3 AS
+SELECT StreetAddress, count(*) as Count 
+FROM `WEEK9_LAB_REALESTATE`
+GROUP BY 1
+
+
+4. Display SalesAmount per Year, City and Zip
+SELECT SUM(Price), YEAR(SaleDate), CityName, ZipCode 
+FROM WEEK9_LAB_REALESTATE 
+GROUP BY 2,3,4
+
+
+CREATE VIEW Query_lab11_q4 AS 
+SELECT SUM(Price), YEAR(SaleDate), CityName, ZipCode 
+FROM WEEK9_LAB_REALESTATE 
+GROUP BY 2,3,4
+
+
+5. Display count of houses that were sold more than once per Year and City
+SELECT COUNT(*), YEAR(SaleDate), CityName 
+FROM WEEK9_LAB_REALESTATE
+GROUP BY 2, 3 HAVING COUNT(*) > 1
+
+
+CREATE VIEW Query_lab11_ q5 AS
+SELECT COUNT(*), YEAR(SaleDate), CityName 
+FROM WEEK9_LAB_REALESTATE
+GROUP BY 2, 3 HAVING COUNT(*) > 1
