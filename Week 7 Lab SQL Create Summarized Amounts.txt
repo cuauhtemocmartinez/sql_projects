@@ -3,29 +3,29 @@
 SELECT 
         Year(Ord_Date), 
         Agent_First_Name,
-             Agent_Last_Name, 
+        Agent_Last_Name, 
         Product_Description, 
         SUM(OrderAmount) AS Total_Sales_Amount 
 FROM 
         Week6_sales_vi 
 GROUP BY 
         Year(Ord_Date),
-              Agent_First_Name,
-              Agent_Last_Name,
-         Product_Description;
+        Agent_First_Name,
+        Agent_Last_Name,
+        Product_Description;
 
 
 2. Year, ManagerName,  Product Family Description, and Total Sales Amount (summarized amount)
 SELECT 
         Year(Ord_Date), 
         Mgr_First_Name,
-             Mgr_Last_Name, 
+        Mgr_Last_Name, 
         Product_Description, 
         SUM(OrderAmount) AS Total_Sales_Amount 
 FROM 
         Week6_sales_vi 
 GROUP BY 
         Year(Ord_Date),
-              Mgr_First_Name,
-              Mgr_Last_Name,
-         Product_Description;
+        Mgr_First_Name,
+        Mgr_Last_Name,
+        Product_Description;
