@@ -1,5 +1,6 @@
-﻿Using a view Week6_sales_vi  write SQL to display :
- 1. Year, AgentName, Product Family Description, and Total Sales Amount (summarized amount)
+Using a view Week6_sales_vi  write SQL to display :
+1. Year, AgentName, Product Family Description, and Total Sales Amount (summarized amount)
+
 SELECT 
         Year(Ord_Date), 
         Agent_First_Name,
@@ -13,7 +14,6 @@ GROUP BY
         Agent_First_Name,
         Agent_Last_Name,
         Product_Description;
-
 
 2. Year, ManagerName,  Product Family Description, and Total Sales Amount (summarized amount)
 SELECT 
