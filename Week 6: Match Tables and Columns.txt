@@ -1,4 +1,5 @@
 1. Review SQL below fixing ColumnNames to match Tables and Columns in YOUR Database.
+
 SELECT  s.Order_Date, 
         s.Order_Id, 
         s.Product_Quantity, 
@@ -15,9 +16,21 @@ SELECT  s.Order_Date,
         mm.Commission_Percent, 
         p.UnitPrice * s.Product_Quantity AS OrderAmount,
         p.UnitPrice * s.Product_Quantity * mm.Commission_Percent * 0.01 AS OrderCommissionsAmount
-FROM    so_Order s, so_Customer c, so_Market m, so_Region r, so_Product p, so_Product_Family f, so_Agent a, so_Manager mm
-WHERE   c.Market_Id = m.Market_Id and c.Region_Id = r.Region_Id and c.Customer_Id = s.Customer_Id and s.Product_Id =                 p.Product_Id and p.ProductFamily_Id = f.Product_Family_Id and s.Agent_Id = a.Agent_Id and a.Manager_Id =
-        mm.Manager_Id
+FROM    so_Order s, 
+        so_Customer c, 
+        so_Market m, 
+        so_Region r, 
+        so_Product p, 
+        so_Product_Family f, 
+        so_Agent a, 
+        so_Manager mm
+WHERE   c.Market_Id = m.Market_Id 
+AND     c.Region_Id = r.Region_Id 
+AND     c.Customer_Id = s.Customer_Id 
+AND     s.Product_Id = p.Product_Id 
+AND     p.ProductFamily_Id = f.Product_Family_Id 
+AND     s.Agent_Id = a.Agent_Id 
+AND     a.Manager_Id = mm.Manager_Id
 
 2. Using SQL from question 1
 Run:
@@ -48,9 +61,9 @@ FROM    so_Order s,
         so_Agent a, 
         so_Manager mm
 WHERE   c.Market_Id = m.Market_Id 
-AND c.Region_Id = r.Region_Id 
-AND c.Customer_Id = s.Customer_Id 
-AND s.Product_Id = p.Product_Id 
-AND p.ProductFamily_Id = f.Product_Family_Id 
-AND s.Agent_Id = a.Agent_Id 
-AND a.Manager_Id = mm.Manager_Id
+AND     c.Region_Id = r.Region_Id 
+AND     c.Customer_Id = s.Customer_Id 
+AND     s.Product_Id = p.Product_Id 
+AND     p.ProductFamily_Id = f.Product_Family_Id 
+AND     s.Agent_Id = a.Agent_Id 
+AND     a.Manager_Id = mm.Manager_Id
