@@ -1,0 +1,23 @@
+1. 
+SELECT  Year(Order_Date), 
+        AgentFirstName, 
+        AgentLastName, 
+        ProductName, 
+        SUM(OrderAmount) AS Total_Sales_Amount 
+FROM    Week6_sales_vi 
+GROUP BY Year(Order_Date), 
+        AgentFirstName, 
+        AgentLastName, 
+        ProductName
+
+2. 
+Select Year(Order_Date), 
+        ManFirstName, 
+        ManLastName, 
+        ProductName, 
+        SUM(OrderAmount) AS Total_Sales_Amount 
+FROM    Week6_sales_vi 
+GROUP BY Year(Order_Date), 
+        ManFirstName, 
+        ManLastName, 
+        ProductName
