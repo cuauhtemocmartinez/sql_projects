@@ -1,0 +1,26 @@
+CREATE TABLE re_State(
+            StateId INT PRIMARY KEY AUTO_INCREMENT,
+            StateName VARCHAR(100));
+
+CREATE TABLE re_City(
+            CityId INT PRIMARY KEY AUTO_INCREMENT, 
+            CityName VARCHAR(100), 
+            StateId INT, 
+            FOREIGN KEY (StateId) REFERENCES re_State(StateId));
+
+CREATE TABLE Region(
+            RegionId INT PRIMARY KEY, 
+            RegionName VARCHAR(20)); 
+            
+CREATE TABLE Market(
+            MarketId INT PRIMARY KEY, 
+            MarketName VARCHAR(100)); 
+            
+CREATE TABLE Customer (
+            CustomerId INT PRIMARY KEY, 
+            CustomerName VARCHAR(100) NOT NULL, 
+            CustomerPhone VARCHAR(20), 
+            MarketId INT, 
+            FOREIGN KEY (MARKETID) REFERENCES Market(MarketId), 
+            REGION_ID INT, 
+            FOREIGN KEY (REGIONID) REFERENCES Region(RegionId));
