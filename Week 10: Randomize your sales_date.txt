@@ -1,51 +1,42 @@
 ﻿Randomize your sales_date in re_Sales table in your database : 200 records 60 Month forward, 150 records 65 Month forward, 170 records 8 years back, 300 records 2 years back.
 
-
-60 Months
+60 Months:
 SELECT date_add(SaleDate, interval 5 year) 
 FROM `re_Transactions`
 LIMIT 200;
-
 
 UPDATE `re_Transactions`
 SET SaleDate = date_add(SaleDate, interval 5 year)
 WHERE year(SaleDate) = 2008 LIMIT 200;
 
-
-65 Months
+65 Months:
 SELECT date_add(SaleDate, interval 65 month) 
 FROM `re_Transactions`
 LIMIT 150;
-
 
 UPDATE `re_Transactions`
 SET SaleDate = date_add(SaleDate, interval 65 month)
 WHERE year(SaleDate) = 2008 
 LIMIT 150;
 
-
-8 Years Ago
+8 Years Ago:
 SELECT date_add(SaleDate, interval -8 year) 
 FROM `re_Transactions`
 LIMIT 170;
-
 
 UPDATE `re_Transactions`
 SET SaleDate = date_add(SaleDate, interval -8 year)
 WHERE year(SaleDate) = 2008 
 LIMIT 170;
 
-
-2 Years Ago
+2 Years Ago:
 SELECT date_add(SaleDate, interval -2 year) 
 FROM `re_Transactions`LIMIT 300;
-
 
 UPDATE `re_Transactions`
 SET SaleDate = date_add(SaleDate, interval -2 year)
 WHERE year(SaleDate) = 2008 
 LIMIT 300;
-
 
 SELECT COUNT(*), year(SaleDate) 
 FROM re_Transactions 
