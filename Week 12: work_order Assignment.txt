@@ -1,20 +1,17 @@
-﻿CREATE TABLE Week12_orders AS 
+CREATE TABLE Week12_orders AS 
 CREATE * from yhelen.orders;
 CREATE TABLE work_orders as select * from yhelen.orders;
-
 
 UPDATE work_orders set `orderNumber`=`orderNumber` + 1000, `orderDate` =
 date_add(`orderDate`, interval 5 year), `shippedDate` =
 date_add(`shippedDate`, interval 5 year), `requiredDate` =
 date_add(`requiredDate`, interval 5 year);
 
-
 INSERT INTO Week12_orders select * from work_orders;
 UPDATE work_orders set `orderNumber`=`orderNumber` + 1000, `orderDate` =
 date_add(`orderDate`, interval 2 year), `shippedDate` =
 date_add(`shippedDate`, interval 2 year), `requiredDate` =
 date_add(`requiredDate`, interval 2 year);
-
 
 INSERT INTO Week12_orders select * from work_orders;
 SELECT count(1), year(`orderDate`) 
